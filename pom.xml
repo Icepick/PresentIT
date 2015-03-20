@@ -27,11 +27,19 @@
 			<artifactId>jersey-container-servlet</artifactId>
 		</dependency>
 		<dependency>
+			<!-- JSON Support in Java Jersey -->
 			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-moxy</artifactId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.17</version>
 		</dependency>
-
 		<dependency>
+			<!-- Swagger Support -->
+			<groupId>com.wordnik</groupId>
+			<artifactId>swagger-jersey2-jaxrs_2.10</artifactId>
+			<version>1.3.12</version>
+		</dependency>
+		<dependency>
+			<!-- Java Jersey Test Framework -->
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
 			<artifactId>jersey-test-framework-provider-bundle</artifactId>
 			<type>pom</type>
