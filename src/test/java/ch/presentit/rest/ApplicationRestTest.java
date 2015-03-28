@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.presentit.entity.Version;
+import ch.presentit.model.Version;
 import ch.presentit.rest.ApplicationRest;
 
 public class ApplicationRestTest extends JerseyTest {

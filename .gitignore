@@ -13,6 +13,7 @@
 .project
 .settings
 Procfile
+bower_components/
 target/
 bin/
 
