@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "homepage": "https://github.com/Icepick/PresentIT",
   "authors": [
-    "Icepick"
+    "Icepick",
+    "Winnefoo"
   ],
   "description": "Presentation Web App",
   "main": "index.html",

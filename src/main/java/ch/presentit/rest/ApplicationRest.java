@@ -47,7 +47,7 @@ public class ApplicationRest {
 		version.setRelease("1.0.1");
 		version.setName("Present IT");
 		version.setLicense("MIT");
-		version.setAuthor("Icepick & Strikeflare");
+		version.setAuthor("Icepick & Winnefoo");
 		version.setDate(new Date());
 		LOGGER.debug("version object retrieved : (" + version.toString() + ")");
 		return Response.status(200).entity(version).build();
