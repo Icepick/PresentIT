@@ -9,7 +9,6 @@ import javax.ws.rs.core.Application;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -17,10 +16,13 @@ import ch.presentit.model.Version;
 import ch.presentit.rest.ApplicationRest;
 
 public class ApplicationRestTest extends JerseyTest {
-
+	
 	@Override
     protected Application configure() {
-		return new ResourceConfig(ApplicationRest.class);
+		ResourceConfig config = new ResourceConfig();
+		config.register(ApplicationRest.class);
+        config.property("contextConfigLocation", "classpath:testContext.xml");
+        return config;
     }
 
 	/**
@@ -30,6 +32,7 @@ public class ApplicationRestTest extends JerseyTest {
     @Test
     public void testVersion() throws IOException {
         final String responseMsg = target().path("app/version").request().get(String.class);
+        System.out.println(responseMsg);
         ObjectMapper mapper = new ObjectMapper();
         Version version = mapper.readValue(responseMsg, Version.class);
         assertEquals(version.getName(), "Present IT");

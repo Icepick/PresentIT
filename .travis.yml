@@ -4,6 +4,9 @@ jdk:
   - oraclejdk8
   - oraclejdk7
   - openjdk7
+
+before_script:
+  - mysql -e 'create database presentit_test;
   
 after_success:
   - mvn clean cobertura:cobertura coveralls:report
