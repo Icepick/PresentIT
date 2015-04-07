@@ -1,1 +1,1 @@
-INSERT INTO version (`name`, `release`, `author`, `license`, `created`) VALUES ("Present IT", "1.0.1", "Icepick & Strikeflare", "MIT",  CURRENT_TIMESTAMP());
+INSERT INTO version (`name`, `release`, `author`, `license`, `created`) VALUES ("Present IT", "1.0.1", "Icepick & Winnefoo", "MIT",  CURRENT_TIMESTAMP());
