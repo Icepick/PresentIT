@@ -38,7 +38,7 @@ public class ApplicationRestTest extends JerseyTest {
         assertEquals(version.getName(), "Present IT");
         assertEquals(version.getRelease(), "1.0.1");
         assertEquals(version.getLicense(), "MIT");
-        assertEquals(version.getAuthor(), "Icepick & Strikeflare");
+        assertEquals(version.getAuthor(), "Icepick & Winnefoo");
     }
 	
 	/**
