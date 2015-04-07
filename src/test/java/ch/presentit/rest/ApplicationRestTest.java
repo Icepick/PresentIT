@@ -32,7 +32,6 @@ public class ApplicationRestTest extends JerseyTest {
     @Test
     public void testVersion() throws IOException {
         final String responseMsg = target().path("app/version").request().get(String.class);
-        System.out.println(responseMsg);
         ObjectMapper mapper = new ObjectMapper();
         Version version = mapper.readValue(responseMsg, Version.class);
         assertEquals(version.getName(), "Present IT");

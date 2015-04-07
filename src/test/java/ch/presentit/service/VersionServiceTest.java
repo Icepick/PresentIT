@@ -49,7 +49,7 @@ public class VersionServiceTest extends TestCase {
 	@Test
 	public void saveVersion() {
 		version = versionService.save(mockedVersion);
-		Assert.notNull(this.version, "Version should not be null");
+		Assert.notNull(version, "Version should not be null");
 
 		assertEquals(version.getName(), mockedVersion.getName());
 		assertEquals(version.getAuthor(), mockedVersion.getAuthor());
@@ -60,7 +60,7 @@ public class VersionServiceTest extends TestCase {
 	@Test
 	public void updateVersion() {
 		version = versionService.save(mockedVersion);
-		Assert.notNull(this.version, "Version should not be null");
+		Assert.notNull(version, "Version should not be null");
 
 		Version myVersion = versionService.findByID(version.getId());
 		Assert.notNull(myVersion, "My version should not be null");
@@ -76,7 +76,7 @@ public class VersionServiceTest extends TestCase {
 
 	@Test
 	public void deleteVersion() {
-		Version savedVersion = versionService.save(this.mockedVersion);
+		Version savedVersion = versionService.save(mockedVersion);
 		Long tmpID = savedVersion.getId();
 		Assert.notNull(savedVersion, "Version should not be null");
 

@@ -8,7 +8,6 @@ import ch.presentit.model.Version;
 import ch.presentit.repository.VersionRepository;
 
 @Service("versionService")
-@Transactional
 public class VersionServiceImpl implements VersionService {
 
 	@Autowired
