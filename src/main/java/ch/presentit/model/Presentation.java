@@ -6,6 +6,7 @@ package ch.presentit.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,24 +41,30 @@ public class Presentation {
 	@Column(name = "access")
 	private Boolean access;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Template template;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Slide> slides;
 
 	@Column(name = "created", insertable = true, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date created;
 
-	@Column(name = "modified", insertable = true, updatable = true)
+	@Column(name = "modified", insertable = false, updatable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 
-	@Column(name = "deleted", insertable = true, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date deleted;
-
+	@PrePersist
+	void onCreate() {
+		this.setCreated(new Date());
+	 }
+	
+	@PreUpdate
+	void onUpdate() {
+		this.setModified(new Date());
+	}
+	
 	/**
 	 * @return the access
 	 */
@@ -68,13 +77,6 @@ public class Presentation {
 	 */
 	public Date getCreated() {
 		return created;
-	}
-
-	/**
-	 * @return the deleted
-	 */
-	public Date getDeleted() {
-		return deleted;
 	}
 
 	/**
@@ -143,14 +145,6 @@ public class Presentation {
 	}
 
 	/**
-	 * @param deleted
-	 *            the deleted to set
-	 */
-	public void setDeleted(Date deleted) {
-		this.deleted = deleted;
-	}
-
-	/**
 	 * @param description
 	 *            the description to set
 	 */
@@ -204,6 +198,11 @@ public class Presentation {
 	 */
 	public void setToken(String token) {
 		this.token = token;
+	}
+	
+	@Override
+	public String toString(){
+		return this.title + " :: " + this.created;
 	}
 
 }

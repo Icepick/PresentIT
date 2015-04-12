@@ -11,6 +11,8 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="ch.presentit" />
+	
+	<jpa:repositories base-package="ch.presentit.repository" />
 
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 

@@ -1,7 +1,5 @@
 package ch.presentit.service;
 
-import java.util.Date;
-
 import junit.framework.TestCase;
 
 import org.junit.After;
@@ -12,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import ch.presentit.model.Version;
+import ch.presentit.util.MockedObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:testContext.xml")
+@Transactional
 public class VersionServiceTest extends TestCase {
 
 	@Autowired
@@ -32,18 +33,12 @@ public class VersionServiceTest extends TestCase {
 
 	@Before
 	public void setUp() {
-		mockedVersion = new Version();
-		mockedVersion.setName("Present IT - Test");
-		mockedVersion.setAuthor("Hans Muster");
-		mockedVersion.setRelease("1.0.1-test");
-		mockedVersion.setLicense("MIT");
-		mockedVersion.setCreated(new Date());
+		mockedVersion =  new MockedObject().getVersion(); 
 	}
 
 	@After
 	public void tearDown() {
-		if (version != null)
-			versionService.delete(version.getId());
+		
 	}
 
 	@Test
@@ -62,14 +57,14 @@ public class VersionServiceTest extends TestCase {
 		version = versionService.save(mockedVersion);
 		Assert.notNull(version, "Version should not be null");
 
-		Version myVersion = versionService.findByID(version.getId());
+		Version myVersion = versionService.find(version.getId());
 		Assert.notNull(myVersion, "My version should not be null");
 
 		String author = "Freddy Cap";
 		myVersion.setAuthor(author);
 		versionService.update(myVersion, myVersion.getId());
 
-		Version updatedVersion = versionService.findByID(myVersion.getId());
+		Version updatedVersion = versionService.find(myVersion.getId());
 		assertNotNull(updatedVersion);
 		assertEquals(author, updatedVersion.getAuthor());
 	}
@@ -80,10 +75,9 @@ public class VersionServiceTest extends TestCase {
 		Long tmpID = savedVersion.getId();
 		Assert.notNull(savedVersion, "Version should not be null");
 
-		Version deletedVersion = versionService.delete(savedVersion.getId());
-		Assert.notNull(deletedVersion, "deleted Version should be valid");
+		versionService.delete(savedVersion.getId());
 		
-		Version selectDeletedVersion = versionService.findByID(tmpID);
+		Version selectDeletedVersion = versionService.find(tmpID);
 		Assert.isNull(selectDeletedVersion, "retrieved version should be removed");
 	}
 

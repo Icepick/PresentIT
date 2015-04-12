@@ -12,33 +12,34 @@ public class VersionServiceImpl implements VersionService {
 
 	@Autowired
 	private VersionRepository versionRepository;
-	
+
 	@Override
-	public Version findByID(Long versionID) {
-		// Returns the Version for the given versionID.
-		return versionRepository.findByID(versionID);
+	public Version find(Long versionID) {
+		// Returns the version for the given versionID.
+		return versionRepository.findOne(versionID);
 	}
 
 	@Override
 	@Transactional
 	public Version save(Version version) {
 		// Saves the given version object and returns the same.
-		versionRepository.save(version);
-        return version;
+		return versionRepository.save(version);
 	}
 
 	@Override
 	@Transactional
 	public Version update(Version version, Long versionID) {
 		// Updates the version with the given versionID;
-        return versionRepository.update(version, versionID);
+		return versionRepository.save(version);
 	}
 
 	@Override
 	@Transactional
 	public Version delete(Long versionID) {
 		// Deletes the version with the give versionID and returns the same.
-        return versionRepository.delete(versionID);
+		Version deletedVersion = find(versionID);
+		versionRepository.delete(versionID);
+		return deletedVersion;
 	}
 
 }

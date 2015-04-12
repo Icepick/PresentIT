@@ -48,7 +48,7 @@ public class ApplicationRest {
 	@ApiOperation(value = "retrieve the version resource")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	public Response getVersion() throws JsonProcessingException {
-		Version version = versionService.findByID(new Long(1));
+		Version version = versionService.find(new Long(1));
 		LOGGER.debug("version object retrieved : (" + version.toString() + ")");
 		return Response.status(200).entity(version).build();
 	}
