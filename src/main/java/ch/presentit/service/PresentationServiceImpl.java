@@ -21,7 +21,7 @@ public class PresentationServiceImpl implements PresentationService {
 
 	@Autowired
 	private PresentationRepository presentationRepository;
-	
+
 	@Override
 	public Presentation find(Long presentationID) {
 		// Returns the presentation for the given presentationID.
@@ -40,7 +40,7 @@ public class PresentationServiceImpl implements PresentationService {
 		Sort defaultSort = new Sort(Sort.Direction.ASC, "id");
 		return findAll(index, limit, defaultSort);
 	}
-	
+
 	@Override
 	public Page<Presentation> findAll(int index, int limit, Sort sort) {
 		// Returns all presentations with paging and sort restriction.
@@ -59,7 +59,7 @@ public class PresentationServiceImpl implements PresentationService {
 	@Transactional
 	public Presentation update(Presentation presentation) {
 		// Updates the presentation with the given presentationID;
-        return presentationRepository.save(presentation);
+		return presentationRepository.save(presentation);
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public class PresentationServiceImpl implements PresentationService {
 	public Presentation delete(Long presentationID) {
 		// Deletes the presentation with the give presentationID and returns the same.
 		Presentation deletedPresentation = find(presentationID);
-        presentationRepository.delete(presentationID);
-        return deletedPresentation;
+		presentationRepository.delete(presentationID);
+		return deletedPresentation;
 	}
 
 }

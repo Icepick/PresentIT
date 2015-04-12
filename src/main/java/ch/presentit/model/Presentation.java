@@ -58,13 +58,13 @@ public class Presentation {
 	@PrePersist
 	void onCreate() {
 		this.setCreated(new Date());
-	 }
-	
+	}
+
 	@PreUpdate
 	void onUpdate() {
 		this.setModified(new Date());
 	}
-	
+
 	/**
 	 * @return the access
 	 */
@@ -199,9 +199,9 @@ public class Presentation {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return this.title + " :: " + this.created;
 	}
 
